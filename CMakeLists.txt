@@ -10,7 +10,7 @@ project(dsalib
 )
 
 set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(HEADERS
    ${CMAKE_CURRENT_SOURCE_DIR}/include/milkyway/placeholder.h
@@ -36,3 +36,7 @@ target_compile_features(${PROJECT_NAME}
    PUBLIC
       cxx_std_14
 )
+
+enable_testing()
+
+add_subdirectory(tests)
