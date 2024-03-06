@@ -13,11 +13,13 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(HEADERS
-   ${CMAKE_CURRENT_SOURCE_DIR}/include/milkyway/placeholder.h
+   ${CMAKE_CURRENT_SOURCE_DIR}/include/milkyway/binary_search_tree/binary_search_tree.h
+   ${CMAKE_CURRENT_SOURCE_DIR}/include/milkyway/binary_search_tree/binary_tree_node.h
+   ${CMAKE_CURRENT_SOURCE_DIR}/include/milkyway/types.h
 )
 
 set(SOURCES
-   ${CMAKE_CURRENT_SOURCE_DIR}/src/placeholder.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/src/binary_search_tree/binary_search_tree.cpp
 )
 
 add_library(${PROJECT_NAME}
