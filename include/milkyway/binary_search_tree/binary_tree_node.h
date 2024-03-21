@@ -16,7 +16,7 @@ namespace Prashant
 {
 namespace Milkyway
 {
-namespace BinarySearchTree
+namespace BST
 {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,29 +32,12 @@ public:
    /////////////////////////////////////////////////////////////////////////////////////////////////
    // @brief The parameterized constructor.
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   explicit BinaryTreeNode(NType const cNodeValue)
-      : mRightNode(nullptr)
-      , mLeftNode(nullptr)
-      , mNodeValue(cNodeValue)
-   {
-      // Intentionally left empty.
-   }
+   explicit BinaryTreeNode(NType const cNodeValue);
    
    /////////////////////////////////////////////////////////////////////////////////////////////////
    // @brief Rule of five.
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   ~BinaryTreeNode(void)
-   {
-      if (mRightNode != nullptr)
-      {
-         delete mRightNode;
-      }
-
-      if (mLeftNode != nullptr)
-      {
-         delete mLeftNode;
-      }
-   }
+   ~BinaryTreeNode(void);
 
    BinaryTreeNode(void) = delete;
 
@@ -64,6 +47,7 @@ public:
    BinaryTreeNode(BinaryTreeNode<NType>&&) noexcept = delete;
    BinaryTreeNode<NType>& operator=(BinaryTreeNode<NType>&&) noexcept = delete;
 
+public:
    /////////////////////////////////////////////////////////////////////////////////////////////////
    // @brief Right and left node pointers.
    /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -76,7 +60,7 @@ public:
    NType mNodeValue;
 };
 
-} // namespace BinarySearchTree
+} // namespace BST
 } // namespace Milkyway
 } // namespace Prashant
 

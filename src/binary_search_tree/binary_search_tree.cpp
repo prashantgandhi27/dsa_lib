@@ -17,7 +17,7 @@ namespace Prashant
 {
 namespace Milkyway
 {
-namespace BinarySearchTree
+namespace BST
 {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -71,11 +71,10 @@ bool BinarySearchTree<ElementType>::insertNode(BinaryTreeNode<ElementType>* &prN
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename ElementType>
-void BinarySearchTree<ElementType>::preOrderTraversal(BinaryTreeNode<ElementType>* &r_node) const
+void BinarySearchTree<ElementType>::preOrderTraversal(BinaryTreeNode<ElementType>* r_node) const
 {
    if (nullptr != r_node)
    {
-      std:cout << r_node->mNodeValue << " ";
       preOrderTraversal(r_node->mLeftNode);
       preOrderTraversal(r_node->mRightNode);
    }
@@ -85,12 +84,11 @@ void BinarySearchTree<ElementType>::preOrderTraversal(BinaryTreeNode<ElementType
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename ElementType>
-void BinarySearchTree<ElementType>::inOrderTraversal(BinaryTreeNode<ElementType>* &r_node) const
+void BinarySearchTree<ElementType>::inOrderTraversal(BinaryTreeNode<ElementType>* r_node) const
 {
    if (nullptr != r_node)
    {
       preOrderTraversal(r_node->mLeftNode);
-      std:cout << r_node->mNodeValue << " ";
       preOrderTraversal(r_node->mRightNode);
    }
 
@@ -99,13 +97,12 @@ void BinarySearchTree<ElementType>::inOrderTraversal(BinaryTreeNode<ElementType>
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename ElementType>
-void BinarySearchTree<ElementType>::postOrderTraversal(BinaryTreeNode<ElementType>* &r_node) const
+void BinarySearchTree<ElementType>::postOrderTraversal(BinaryTreeNode<ElementType>* r_node) const
 {
    if (nullptr != r_node)
    {
       preOrderTraversal(r_node->mLeftNode);
       preOrderTraversal(r_node->mRightNode);
-      std:cout << r_node->mNodeValue << " ";
    }
 
    return;
@@ -187,6 +184,8 @@ uint32_t BinarySearchTree<ElementType>::totalLeaves(void) const
    return 0U;
 }
 
-} // namespace BinarySearchTree
+template class BinarySearchTree<uint32_t>;
+
+} // namespace BST
 } // namespace Milkyway
 } // namespace Prashant

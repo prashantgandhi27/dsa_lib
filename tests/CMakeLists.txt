@@ -19,16 +19,21 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(placeholdertests
-   ${CMAKE_CURRENT_SOURCE_DIR}/unit/placeholder_tests.cpp
+add_executable(BinarySearchTreeTests
+   ${CMAKE_CURRENT_SOURCE_DIR}/unit/binary_search_tree/binary_search_tree_tests.cpp
 )
 
-target_link_libraries(placeholdertests
+target_link_libraries(BinarySearchTreeTests
    PRIVATE
       gtest_main
 )
 
 add_test(
-   NAME placeholdertests
-   COMMAND placeholdertests
+   NAME BinarySearchTreeTests
+   COMMAND BinarySearchTreeTests
+)
+
+target_include_directories(BinarySearchTreeTests
+   PRIVATE
+      ${PROJECT_SOURCE_DIR}/include
 )

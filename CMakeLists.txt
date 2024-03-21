@@ -20,6 +20,7 @@ set(HEADERS
 
 set(SOURCES
    ${CMAKE_CURRENT_SOURCE_DIR}/src/binary_search_tree/binary_search_tree.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/src/binary_search_tree/binary_tree_node.cpp
 )
 
 add_library(${PROJECT_NAME}
