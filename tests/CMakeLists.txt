@@ -19,16 +19,24 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(placeholdertests
-   ${CMAKE_CURRENT_SOURCE_DIR}/unit/placeholder_tests.cpp
+add_executable(listtests
+   ${CMAKE_CURRENT_SOURCE_DIR}/unit/list_tests.cpp
 )
 
-target_link_libraries(placeholdertests
+target_include_directories(listtests
+   PUBLIC
+      ${CMAKE_CURRENT_SOURCE_DIR}/../include
+   PRIVATE
+      ${CMAKE_CURRENT_SOURCE_DIR}/../src
+)
+
+target_link_libraries(listtests
    PRIVATE
       gtest_main
+      gmock_main
 )
 
 add_test(
-   NAME placeholdertests
-   COMMAND placeholdertests
+   NAME listtests
+   COMMAND listtests
 )

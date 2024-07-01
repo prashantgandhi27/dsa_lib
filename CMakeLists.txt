@@ -13,9 +13,10 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(HEADERS
-   ${CMAKE_CURRENT_SOURCE_DIR}/include/milkyway/binary_search_tree/binary_search_tree.h
-   ${CMAKE_CURRENT_SOURCE_DIR}/include/milkyway/binary_search_tree/binary_tree_node.h
-   ${CMAKE_CURRENT_SOURCE_DIR}/include/milkyway/types.h
+   ${CMAKE_CURRENT_SOURCE_DIR}/include/milky_way/binary_search_tree/binary_search_tree.h
+   ${CMAKE_CURRENT_SOURCE_DIR}/include/milky_way/binary_search_tree/binary_tree_node.h
+   ${CMAKE_CURRENT_SOURCE_DIR}/include/milky_way/list/list.h
+   ${CMAKE_CURRENT_SOURCE_DIR}/include/milky_way/types.h
 )
 
 set(SOURCES
