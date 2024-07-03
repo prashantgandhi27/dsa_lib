@@ -12,6 +12,8 @@ project(dsalib
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+enable_testing()
+
 set(HEADERS
    ${CMAKE_CURRENT_SOURCE_DIR}/include/milky_way/binary_search_tree/binary_search_tree.h
    ${CMAKE_CURRENT_SOURCE_DIR}/include/milky_way/binary_search_tree/binary_tree_node.h
@@ -39,7 +41,5 @@ target_compile_features(${PROJECT_NAME}
    PUBLIC
       cxx_std_14
 )
-
-enable_testing()
 
 add_subdirectory(tests)
