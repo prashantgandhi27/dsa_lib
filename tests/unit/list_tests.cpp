@@ -160,5 +160,177 @@ TEST_F(ListTest, Given_ANonEmptyList_When_ExistingElementIsRemoved_Then_ElementS
    EXPECT_EQ(test_list.front(), 98);
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// Equality operator test(s)
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+TEST_F(ListTest, Given_ANonEmptyList_When_ListObjIsComparedWithItselfUsingEqualityOperator_Then_TrueIsReturned)
+{
+   // Given - A non-empty string,
+   List<uint8_t> const test_list{ 4U, 7U, 9U, 78U };
+
+   // When - List object is compared with itself using equality(==) operator,
+   // Then - True is returned.
+   EXPECT_TRUE((test_list == test_list));
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+TEST_F(
+   ListTest,
+   Given_TwoNonEmptyList_When_ListObjIsComparedWithAnotherListContainingSameElementsEqualityOperator_Then_TrueIsReturned)
+{
+   // Given - Two non-empty string,
+   List<uint8_t> const test_list_1{ 4U, 7U, 9U, 78U };
+   List<uint8_t> const test_list_2{ 4U, 7U, 9U, 78U };
+
+   // When - List object is compared with another list containing same elements using equality(==)
+   //        operator,
+   // Then - True is returned.
+   EXPECT_TRUE(test_list_1 == test_list_2);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+TEST_F(
+   ListTest,
+   Given_TwoNonEmptyList_When_ListObjIsComparedWithAnotherListContainingDifferentElementsEqualityOperator_Then_FalseIsReturned)
+{
+   // Given - Two non-empty string,
+   List<uint8_t> const test_list_1{ 4U, 7U, 9U, 78U };
+   List<uint8_t> const test_list_2{ 4U, 7U, 9U, 75U };
+
+   // When - List object is compared with another list containing different elements using
+   //        equality(==) operator,
+   // Then - False is returned.
+   EXPECT_FALSE(test_list_1 == test_list_2);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// Not equal to(!=) operator test(s)
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+TEST_F(ListTest, Given_ANonEmptyList_When_ListObjIsComparedWithItselfUsingInequalityOperator_Then_FalseIsReturned)
+{
+   // Given - A non-empty string,
+   List<uint8_t> const test_list{ 4U, 7U, 9U, 78U };
+
+   // When - List object is compared with itself using inequality(!=) operator,
+   // Then - False is returned.
+   EXPECT_FALSE((test_list != test_list));
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+TEST_F(
+   ListTest,
+   Given_TwoNonEmptyList_When_ListObjIsComparedWithAnotherListContainingSameElementsInequalityOperator_Then_FalseIsReturned)
+{
+   // Given - Two non-empty string,
+   List<uint8_t> const test_list_1{ 4U, 7U, 9U, 78U };
+   List<uint8_t> const test_list_2{ 4U, 7U, 9U, 78U };
+
+   // When - List object is compared with another list containing same elements using inequality(!=)
+   //        operator,
+   // Then - False is returned.
+   EXPECT_FALSE(test_list_1 != test_list_2);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+TEST_F(
+   ListTest,
+   Given_TwoNonEmptyList_When_ListObjIsComparedWithAnotherListContainingDifferentElementsInequalityOperator_Then_TrueIsReturned)
+{
+   // Given - Two non-empty string,
+   List<uint8_t> const test_list_1{ 4U, 7U, 9U, 78U };
+   List<uint8_t> const test_list_2{ 4U, 7U, 9U, 75U };
+
+   // When - List object is compared with another list containing different elements using
+   //        inequality(!=) operator,
+   // Then - True is returned.
+   EXPECT_TRUE(test_list_1 != test_list_2);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// Special member functions - Copy Ctor and Copy Assignment tests
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+TEST_F(ListTest, Given_ANonEmptyList_When_CopyCtorIsUsedToCopyList_Then_CopiedListContainsSameData)
+{
+   // Given - A non-empty string,
+   List<uint8_t> const test_list{ 4U, 7U, 9U, 78U };
+
+   // When - Copy constructor is used to copy list,
+   auto const copy_list = test_list;
+
+   // Then - Copied list contains same elements.
+   EXPECT_TRUE(copy_list == test_list);
+   EXPECT_FALSE(copy_list.is_empty());
+   EXPECT_THAT((copy_list.size() == test_list.size()), "Size is not equal; Copy failed");
+   EXPECT_THAT((copy_list.front() == test_list.front()), "Front is not equal; Copy failed");
+   EXPECT_THAT((copy_list.back() == test_list.back()), "Back is not equal; Copy failed");
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+TEST_F(ListTest, Given_ANonEmptyList_When_CopyAssignmentIsUsedToCopyList_Then_CopiedListContainsSameData)
+{
+   // Given - A non-empty string,
+   List<uint8_t> const test_list{ 4U, 7U, 9U, 78U };
+
+   // When - Copy constructor is used to copy list,
+   List<uint8_t> copy_list;
+   copy_list = test_list;
+
+   // Then - Copied list contains same elements.
+   EXPECT_TRUE(copy_list == test_list);
+   EXPECT_FALSE(copy_list.is_empty());
+   EXPECT_THAT((copy_list.size() == test_list.size()), "Size is not equal; Copy failed");
+   EXPECT_THAT((copy_list.front() == test_list.front()), "Front is not equal; Copy failed");
+   EXPECT_THAT((copy_list.back() == test_list.back()), "Back is not equal; Copy failed");
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// Special member functions - Move Ctor and Move Assignment tests
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+TEST_F(ListTest, Given_ANonEmptyList_When_MoveCtorIsUsedToMoveList_Then_OriginalListIsMoved)
+{
+   // Given - A non-empty string,
+   List<uint8_t> test_list{ 4U, 7U, 9U, 78U };
+   auto const original_list_size = test_list.size();
+   auto const original_list_front = test_list.front();
+   auto const original_list_back = test_list.back();
+
+   // When - Move constructor is used to move list,
+   List<uint8_t> move_list(std::move(test_list));
+
+   // Then - Original list is moved.
+   EXPECT_TRUE(test_list.is_empty());
+   EXPECT_THAT((move_list.size() == original_list_size), "Size mismatch");
+   EXPECT_THAT((move_list.front() == original_list_front), "Front element mismatch");
+   EXPECT_THAT((move_list.back() == original_list_back), "Back element mismatch");
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+TEST_F(ListTest, Given_ANonEmptyList_When_MoveAssignmentIsUsedToMoveList_Then_OriginalListIsMoved)
+{
+   // Given - A non-empty string,
+   List<uint8_t> test_list{ 4U, 7U, 9U, 78U };
+   auto const original_list_size = test_list.size();
+   auto const original_list_front = test_list.front();
+   auto const original_list_back = test_list.back();
+
+   // When - Move assignment is used to move list,
+   List<uint8_t> move_list;
+   move_list = std::move(test_list);
+
+   // Then - Original list is moved.
+   EXPECT_TRUE(test_list.is_empty());
+   EXPECT_THAT((move_list.size() == original_list_size), "Size mismatch");
+   EXPECT_THAT((move_list.front() == original_list_front), "Front element mismatch");
+   EXPECT_THAT((move_list.back() == original_list_back), "Back element mismatch");
+}
+
 } // namespace MilkyWay
 } // namespace Prashant

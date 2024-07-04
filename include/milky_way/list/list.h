@@ -41,6 +41,36 @@ public:
    ~List();
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
+   /// @brief Copy constructor.
+   /////////////////////////////////////////////////////////////////////////////////////////////////
+   List(List<T> const &);
+
+   /////////////////////////////////////////////////////////////////////////////////////////////////
+   /// @brief Copy assignment.
+   /////////////////////////////////////////////////////////////////////////////////////////////////
+   List<T> &operator=(List<T> const &);
+
+   /////////////////////////////////////////////////////////////////////////////////////////////////
+   /// @brief Copy assignment.
+   /////////////////////////////////////////////////////////////////////////////////////////////////
+   List(List<T> &&) noexcept;
+
+   /////////////////////////////////////////////////////////////////////////////////////////////////
+   /// @brief Move assignment.
+   /////////////////////////////////////////////////////////////////////////////////////////////////
+   List<T> &operator=(List<T> &&) noexcept;
+
+   /////////////////////////////////////////////////////////////////////////////////////////////////
+   /// @brief Equality operator overloading.
+   /////////////////////////////////////////////////////////////////////////////////////////////////
+   bool operator==(List<T> const&) const;
+
+   /////////////////////////////////////////////////////////////////////////////////////////////////
+   /// @brief No equal to(!=) operator overloading.
+   /////////////////////////////////////////////////////////////////////////////////////////////////
+   bool operator!=(List<T> const&) const;
+
+   /////////////////////////////////////////////////////////////////////////////////////////////////
    /// @brief Pushes the element at the beginning of the list.
    ///
    /// @param[in] rc_element The element that needs to be inserted.
@@ -149,20 +179,6 @@ public:
    /////////////////////////////////////////////////////////////////////////////////////////////////
    T &back();
 
-   /////////////////////////////////////////////////////////////////////////////////////////////////
-   /// @brief Prints the list in forward direction.
-   /////////////////////////////////////////////////////////////////////////////////////////////////
-   void print() const;
-
-   /////////////////////////////////////////////////////////////////////////////////////////////////
-   /// @brief Prints the list in backward direction.
-   /////////////////////////////////////////////////////////////////////////////////////////////////
-   void print_reverse() const;
-
-   List(List const &) = default;
-   List &operator=(List const &) = default;
-   List(List &&) noexcept = default;
-   List &operator=(List &&) noexcept = default;
 private:
    struct Node
    {
@@ -180,10 +196,16 @@ private:
    void remove_tail_nodes(T const &);
    bool remove_middle_nodes(T const &);
 
+   void copy_list(List<T> const&);
+
    Node *mp_head{nullptr};
    Node *mp_tail{nullptr};
    size_t m_total_nodes{0U};
 };
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// List class implementation.
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename T>
@@ -200,6 +222,100 @@ template <typename T>
 List<T>::~List()
 {
    this->clear();
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+template <typename T>
+List<T>::List(List<T> const& rhs)
+{
+   this->copy_list(rhs);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+template <typename T>
+List<T>& List<T>::operator=(List<T> const& rhs)
+{
+   if (this != &rhs)
+   {
+      this->copy_list(rhs);
+   }
+
+   return *this;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+template <typename T>
+List<T>::List(List<T>&& rhs) noexcept
+{
+   this->clear();
+
+   this->mp_head = rhs.mp_head;
+   this->mp_tail = rhs.mp_tail;
+   this->m_total_nodes = rhs.m_total_nodes;
+
+   rhs.mp_head = nullptr;
+   rhs.mp_head = nullptr;
+   rhs.m_total_nodes = 0U;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+template <typename T>
+List<T>& List<T>::operator=(List<T>&& rhs) noexcept
+{
+   if (this != &rhs)
+   {
+      this->clear();
+
+      this->mp_head = rhs.mp_head;
+      this->mp_tail = rhs.mp_tail;
+      this->m_total_nodes = rhs.m_total_nodes;
+
+      rhs.mp_head = nullptr;
+      rhs.mp_head = nullptr;
+      rhs.m_total_nodes = 0U;
+   }
+
+   return *this;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+template <typename T>
+bool List<T>::operator==(List<T> const& rhs) const
+{
+   auto equality_result{ true };
+   if (this != &rhs)
+   {
+      if (this->size() != rhs.size())
+      {
+         equality_result = false;
+      }
+      else
+      {
+         List<T>::Node const* lhs_current_node = this->mp_head;
+         List<T>::Node const* rhs_current_node = rhs.mp_head;
+
+         while ((lhs_current_node != nullptr) && (rhs_current_node != nullptr))
+         {
+            if (lhs_current_node->m_node_data != rhs_current_node->m_node_data)
+            {
+               equality_result = false;
+               break;
+            }
+
+            lhs_current_node = lhs_current_node->mp_next_node;
+            rhs_current_node = rhs_current_node->mp_next_node;
+         }
+      }
+   }
+
+   return equality_result;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+template <typename T>
+bool List<T>::operator!=(List<T> const& rhs) const
+{
+   return !((*this) == rhs);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -537,39 +653,20 @@ bool List<T>::remove(T const &rc_element)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename T>
-void List<T>::print() const
+void List<T>::copy_list(List<T> const& rc_list)
 {
-   if (this->is_empty())
+   if (!this->is_empty())
    {
-      std::cout << "Empty list" << std::endl;
-      return;
+      this->clear();
    }
-   List::Node const *temp = this->mp_head;
-   while (temp != nullptr)
-   {
-      std::cout << temp->m_node_data << " ";
-      temp = temp->mp_next_node;
-   }
-   std::cout << std::endl;
-   return;
-}
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-template <typename T>
-void List<T>::print_reverse() const
-{
-   if (this->is_empty())
+   List::Node* current_node = rc_list.mp_head;
+   while (current_node != nullptr)
    {
-      std::cout << "Empty list" << std::endl;
-      return;
+      this->push_back(current_node->m_node_data);
+      current_node = current_node->mp_next_node;
    }
-   List::Node const *temp = this->mp_tail;
-   while (temp != nullptr)
-   {
-      std::cout << temp->m_node_data << " ";
-      temp = temp->mp_prev_node;
-   }
-   std::cout << std::endl;
+
    return;
 }
 
