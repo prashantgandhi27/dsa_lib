@@ -119,5 +119,19 @@ TEST_F(ListIteratorTest, Given_AListIterator_When_RangBasedForLoopIsCalled_Then_
    }
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+TEST_F(ListIteratorTest, Given_AListIterator_When_IteratorIsUsedToModifyListContent_Then_ListIsUpdated)
+{
+   // Given - A List iterator,
+   auto it = test_list.begin();
+
+   // When - An iterator is used to modify list content,
+   uint32_t const updated_value{ 70U };
+   *it = updated_value;
+
+   // Then - List is updated.
+   EXPECT_THAT(test_list.front(), Eq(updated_value));
+}
+
 } // namespace MilkyWay
 } // namespace Prashant
