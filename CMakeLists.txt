@@ -15,14 +15,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 enable_testing()
 
 set(HEADERS
-   ${CMAKE_CURRENT_SOURCE_DIR}/include/milky_way/binary_search_tree/binary_search_tree.h
-   ${CMAKE_CURRENT_SOURCE_DIR}/include/milky_way/binary_search_tree/binary_tree_node.h
    ${CMAKE_CURRENT_SOURCE_DIR}/include/milky_way/list/list.h
-   ${CMAKE_CURRENT_SOURCE_DIR}/include/milky_way/types.h
+   ${CMAKE_CURRENT_SOURCE_DIR}/include/milky_way/milky_way_public.h
 )
 
 set(SOURCES
-   ${CMAKE_CURRENT_SOURCE_DIR}/src/binary_search_tree/binary_search_tree.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/src/placeholder.cpp
 )
 
 add_library(${PROJECT_NAME}
@@ -42,4 +40,5 @@ target_compile_features(${PROJECT_NAME}
       cxx_std_14
 )
 
+add_subdirectory(docs)
 add_subdirectory(tests)

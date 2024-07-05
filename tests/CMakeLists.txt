@@ -1,7 +1,6 @@
 ####################################################################################################
 #  Copyright (c) 2024 Prashant Gandhi - All rights reserved
 ####################################################################################################
-
 cmake_minimum_required(VERSION 3.20)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -20,7 +19,8 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 add_executable(listtests
-   ${CMAKE_CURRENT_SOURCE_DIR}/unit/list_tests.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/unit/list/list_iterator_tests.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/unit/list/list_tests.cpp
 )
 
 target_include_directories(listtests
