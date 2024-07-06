@@ -2,8 +2,8 @@ Data Structure APIs
 ====================================================================================================
 
 This repo contains below Data Structure APIs in C++.
-* ~~List without iterator - Implemented and Unit Tested.~~
-* **List with iterator - In progress.**
-* Stack - Upcoming
+* ~~List - Implemented and Unit Tested.~~
+  * ~~Iterator - Implemented and Unit Tested.~~
+* **Stack - In Progress**
 * Queue - Upcoming
 * Binary Search Tree - Upcoming
