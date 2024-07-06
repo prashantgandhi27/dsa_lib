@@ -27,15 +27,14 @@ class List
 private:
    struct Node
    {
-      Node(T const &rc_element)
-          : m_node_data{std::move(rc_element)}
+      Node(T const& rc_element) : m_node_data{std::move(rc_element)}
       {
          // Intentionally left empty.
       }
 
       T m_node_data{};
-      Node *mp_next_node{nullptr};
-      Node *mp_prev_node{nullptr};
+      Node* mp_next_node{nullptr};
+      Node* mp_prev_node{nullptr};
    };
 
 public:
@@ -47,7 +46,7 @@ public:
    /////////////////////////////////////////////////////////////////////////////////////////////////
    /// @brief Default constructor.
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   explicit List(std::initializer_list<T> const &);
+   explicit List(std::initializer_list<T> const&);
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
    /// @brief Destructor.
@@ -57,22 +56,22 @@ public:
    /////////////////////////////////////////////////////////////////////////////////////////////////
    /// @brief Copy constructor.
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   List(List<T> const &);
+   List(List<T> const&);
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
    /// @brief Copy assignment.
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   List<T> &operator=(List<T> const &);
+   List<T>& operator=(List<T> const&);
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
    /// @brief Copy assignment.
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   List(List<T> &&) noexcept;
+   List(List<T>&&) noexcept;
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
    /// @brief Move assignment.
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   List<T> &operator=(List<T> &&) noexcept;
+   List<T>& operator=(List<T>&&) noexcept;
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
    /// @brief Equality operator overloading.
@@ -89,48 +88,57 @@ public:
    ///
    /// @param[in] rc_element The element that needs to be inserted.
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   void push_back(T const &rc_element);
+   void push_back(T const& rc_element);
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
    /// @brief Pushes the element at the end of the list.
    ///
    /// @param[in] rc_element The element that needs to be inserted.
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   void push_front(T const &rc_element);
+   void push_front(T const& rc_element);
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
    /// @brief Inserts the provided list of elements.
    ///
    /// @param[in] rc_element The element that needs to be inserted.
-   /// @param[in] c_pos      The position where provided element needs to be inserted.
+   /// @param[in] c_pos      The position where provided element needs to be
+   /// inserted.
    ///
-   /// @note If provided position is greater than the list size, then the provided list of elements
+   /// @note If provided position is greater than the list size, then the
+   /// provided list of elements
    ///       are inserted at the end.
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   void insert(T const &rc_element, size_t const c_pos);
+   void insert(T const& rc_element, size_t const c_pos);
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
    /// @brief Inserts the provided list of elements.
    ///
    /// @param[in] rc_element The element that needs to be inserted.
-   /// @param[in] c_pos      The position where provided element needs to be inserted.
-   /// @param[in] c_count    The number of time provided element needs to be inserted.
+   /// @param[in] c_pos      The position where provided element needs to be
+   /// inserted.
+   /// @param[in] c_count    The number of time provided element needs to be
+   /// inserted.
    ///
-   /// @note If provided position is greater than the list size, then the provided list of elements
+   /// @note If provided position is greater than the list size, then the
+   /// provided list of elements
    ///       are inserted at the end.
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   void insert(T const &rc_element, size_t const c_pos, size_t const c_count);
+   void insert(T const& rc_element, size_t const c_pos, size_t const c_count);
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
    /// @brief Inserts the provided list of elements.
    ///
-   /// @param[in] rc_element_list The list of elements that needs to be inserted.
-   /// @param[in] c_pos           The position where provided list of elements need to be inserted.
+   /// @param[in] rc_element_list The list of elements that needs to be
+   /// inserted.
+   /// @param[in] c_pos           The position where provided list of
+   /// elements need to be inserted.
    ///
-   /// @note If provided position is greater than the list size, then the provided list of elements
+   /// @note If provided position is greater than the list size, then the
+   /// provided list of elements
    ///       are inserted at the end.
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   void insert(std::initializer_list<T> const &rc_element_list, size_t const c_pos);
+   void insert(std::initializer_list<T> const& rc_element_list,
+               size_t const c_pos);
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
    /// @brief Remove the provided element from the list.
@@ -139,7 +147,7 @@ public:
    ///
    /// @return True if element is removed successfully, otherwise false.
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   bool remove(T const &rc_element);
+   bool remove(T const& rc_element);
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
    /// @brief Destroys the list if it is non-empty.
@@ -167,31 +175,33 @@ public:
    ///
    /// @return True if element is found in the list, otherwise false.
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   bool find(T const &rc_element) const;
+   bool find(T const& rc_element) const;
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
    /// @brief Gets the first element in the list.
    ///
-   /// @return Reference to the first element if list is non-empty, otherwise undefined behaviour.
+   /// @return Reference to the first element if list is non-empty, otherwise
+   /// undefined behaviour.
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   T const &front() const;
+   T const& front() const;
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
    /// @overload T const &front() const
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   T &front();
+   T& front();
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
    /// @brief Gets the last element in the list.
    ///
-   /// @return Reference to the last element if list is non-empty, otherwise undefined behaviour.
+   /// @return Reference to the last element if list is non-empty, otherwise
+   /// undefined behaviour.
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   T const &back() const;
+   T const& back() const;
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
    /// @overload T const &back() const
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   T &back();
+   T& back();
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
    /// @brief Provides a way to access container's elements.
@@ -218,7 +228,7 @@ public:
       /// @overload T& operator*()
       //////////////////////////////////////////////////////////////////////////////////////////////
       T const& operator*() const;
-   
+
       //////////////////////////////////////////////////////////////////////////////////////////////
       /// @brief Pre-increment operator overloading.
       //////////////////////////////////////////////////////////////////////////////////////////////
@@ -248,13 +258,14 @@ public:
       Iterator& operator=(Iterator&&) noexcept = default;
 
    private:
-      List<T>::Node* mp_current_node{ nullptr };
+      List<T>::Node* mp_current_node{nullptr};
    };
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
    /// @brief Gets an iterator pointing to a first element of the List.
    ///
-   /// @return Iterator pointing to first element of List if it is non-empty, otherwise undefined
+   /// @return Iterator pointing to first element of List if it is non-empty,
+   /// otherwise undefined
    ///         behaviour.
    /////////////////////////////////////////////////////////////////////////////////////////////////
    List<T>::Iterator begin();
@@ -265,9 +276,11 @@ public:
    List<T>::Iterator begin() const;
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   /// @brief Gets an iterator pointing to one past the last element of the List.
+   /// @brief Gets an iterator pointing to one past the last element of the
+   /// List.
    ///
-   /// @return Iterator pointing to one past the last element of List if it is non-empty, otherwise
+   /// @return Iterator pointing to one past the last element of List if it
+   /// is non-empty, otherwise
    ///         undefined behaviour.
    /////////////////////////////////////////////////////////////////////////////////////////////////
    List<T>::Iterator end();
@@ -278,14 +291,14 @@ public:
    List<T>::Iterator end() const;
 
 private:
-   void remove_head_nodes(T const &);
-   void remove_tail_nodes(T const &);
-   bool remove_middle_nodes(T const &);
+   void remove_head_nodes(T const&);
+   void remove_tail_nodes(T const&);
+   bool remove_middle_nodes(T const&);
 
    void copy_list(List<T> const&);
 
-   Node *mp_head{nullptr};
-   Node *mp_tail{nullptr};
+   Node* mp_head{nullptr};
+   Node* mp_tail{nullptr};
    size_t m_total_nodes{0U};
 };
 
@@ -295,12 +308,11 @@ private:
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename T>
-List<T>::List(std::initializer_list<T> const &rc_init_list)
+List<T>::List(std::initializer_list<T> const& rc_init_list)
 {
-   for (auto const &element : rc_init_list)
-   {
-      this->push_back(element);
-   }
+      for (auto const& element : rc_init_list) {
+         this->push_back(element);
+      }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -321,10 +333,9 @@ List<T>::List(List<T> const& rhs)
 template <typename T>
 List<T>& List<T>::operator=(List<T> const& rhs)
 {
-   if (this != &rhs)
-   {
-      this->copy_list(rhs);
-   }
+      if (this != &rhs) {
+         this->copy_list(rhs);
+      }
 
    return *this;
 }
@@ -348,18 +359,17 @@ List<T>::List(List<T>&& rhs) noexcept
 template <typename T>
 List<T>& List<T>::operator=(List<T>&& rhs) noexcept
 {
-   if (this != &rhs)
-   {
-      this->clear();
+      if (this != &rhs) {
+         this->clear();
 
-      this->mp_head = rhs.mp_head;
-      this->mp_tail = rhs.mp_tail;
-      this->m_total_nodes = rhs.m_total_nodes;
+         this->mp_head = rhs.mp_head;
+         this->mp_tail = rhs.mp_tail;
+         this->m_total_nodes = rhs.m_total_nodes;
 
-      rhs.mp_head = nullptr;
-      rhs.mp_head = nullptr;
-      rhs.m_total_nodes = 0U;
-   }
+         rhs.mp_head = nullptr;
+         rhs.mp_head = nullptr;
+         rhs.m_total_nodes = 0U;
+      }
 
    return *this;
 }
@@ -368,31 +378,28 @@ List<T>& List<T>::operator=(List<T>&& rhs) noexcept
 template <typename T>
 bool List<T>::operator==(List<T> const& rhs) const
 {
-   auto equality_result{ true };
-   if (this != &rhs)
-   {
-      if (this->size() != rhs.size())
-      {
-         equality_result = false;
-      }
-      else
-      {
-         Node const* lhs_current_node = this->mp_head;
-         Node const* rhs_current_node = rhs.mp_head;
-
-         while ((lhs_current_node != nullptr) && (rhs_current_node != nullptr))
-         {
-            if (lhs_current_node->m_node_data != rhs_current_node->m_node_data)
-            {
+   auto equality_result{true};
+      if (this != &rhs) {
+            if (this->size() != rhs.size()) {
                equality_result = false;
-               break;
             }
+            else {
+               Node const* lhs_current_node = this->mp_head;
+               Node const* rhs_current_node = rhs.mp_head;
 
-            lhs_current_node = lhs_current_node->mp_next_node;
-            rhs_current_node = rhs_current_node->mp_next_node;
-         }
+                  while ((lhs_current_node != nullptr) &&
+                         (rhs_current_node != nullptr)) {
+                        if (lhs_current_node->m_node_data !=
+                            rhs_current_node->m_node_data) {
+                           equality_result = false;
+                           break;
+                        }
+
+                     lhs_current_node = lhs_current_node->mp_next_node;
+                     rhs_current_node = rhs_current_node->mp_next_node;
+                  }
+            }
       }
-   }
 
    return equality_result;
 }
@@ -420,16 +427,17 @@ size_t List<T>::size() const
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename T>
-void List<T>::push_back(T const &rc_element)
+void List<T>::push_back(T const& rc_element)
 {
-   if (this->is_empty()) {
-      this->mp_head = new Node(rc_element);
-      this->mp_tail = this->mp_head;
-   } else {
-      this->mp_tail->mp_next_node = new Node(rc_element);
-      this->mp_tail->mp_next_node->mp_prev_node = this->mp_tail;
-      this->mp_tail = this->mp_tail->mp_next_node;
-   }
+      if (this->is_empty()) {
+         this->mp_head = new Node(rc_element);
+         this->mp_tail = this->mp_head;
+      }
+      else {
+         this->mp_tail->mp_next_node = new Node(rc_element);
+         this->mp_tail->mp_next_node->mp_prev_node = this->mp_tail;
+         this->mp_tail = this->mp_tail->mp_next_node;
+      }
 
    ++this->m_total_nodes;
 
@@ -438,17 +446,18 @@ void List<T>::push_back(T const &rc_element)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename T>
-void List<T>::push_front(T const &rc_element)
+void List<T>::push_front(T const& rc_element)
 {
-   if (this->is_empty()) {
-      this->mp_head = new Node(rc_element);
-      this->mp_tail = this->mp_head;
-   } else {
-      Node *temp = new Node(rc_element);
-      temp->mp_next_node = this->mp_head;
-      this->mp_head->mp_prev_node = temp;
-      this->mp_head = this->mp_head->mp_prev_node;
-   }
+      if (this->is_empty()) {
+         this->mp_head = new Node(rc_element);
+         this->mp_tail = this->mp_head;
+      }
+      else {
+         Node* temp = new Node(rc_element);
+         temp->mp_next_node = this->mp_head;
+         this->mp_head->mp_prev_node = temp;
+         this->mp_head = this->mp_head->mp_prev_node;
+      }
 
    ++this->m_total_nodes;
 
@@ -457,51 +466,48 @@ void List<T>::push_front(T const &rc_element)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename T>
-bool List<T>::find(T const &rc_element) const
+bool List<T>::find(T const& rc_element) const
 {
-   if (this->is_empty())
-   {
-      return false;
-   }
+      if (this->is_empty()) {
+         return false;
+      }
 
    bool found{false};
-   Node *current_node = this->mp_head;
-   while (current_node != nullptr)
-   {
-      if (current_node->m_node_data == rc_element)
-      {
-         found = true;
+   Node* current_node = this->mp_head;
+      while (current_node != nullptr) {
+            if (current_node->m_node_data == rc_element) {
+               found = true;
+            }
+         current_node = current_node->mp_next_node;
       }
-      current_node = current_node->mp_next_node;
-   }
 
    return found;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename T>
-T const &List<T>::front() const
+T const& List<T>::front() const
 {
    return this->mp_head->m_node_data;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename T>
-T &List<T>::front()
+T& List<T>::front()
 {
    return this->mp_head->m_node_data;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename T>
-T const &List<T>::back() const
+T const& List<T>::back() const
 {
    return this->mp_tail->m_node_data;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename T>
-T &List<T>::back()
+T& List<T>::back()
 {
    return this->mp_tail->m_node_data;
 }
@@ -510,19 +516,17 @@ T &List<T>::back()
 template <typename T>
 void List<T>::clear()
 {
-   if (this->is_empty())
-   {
-      return;
-   }
+      if (this->is_empty()) {
+         return;
+      }
 
-   Node *current_node = this->mp_head;
-   while (current_node != nullptr)
-   {
-      Node *temp_node = current_node;
-      current_node = current_node->mp_next_node;
-      delete temp_node;
-      --this->m_total_nodes;
-   }
+   Node* current_node = this->mp_head;
+      while (current_node != nullptr) {
+         Node* temp_node = current_node;
+         current_node = current_node->mp_next_node;
+         delete temp_node;
+         --this->m_total_nodes;
+      }
 
    this->mp_head = nullptr;
    this->mp_tail = nullptr;
@@ -532,26 +536,23 @@ void List<T>::clear()
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename T>
-void List<T>::insert(T const &rc_element, size_t const c_position)
+void List<T>::insert(T const& rc_element, size_t const c_position)
 {
-   if (c_position > this->size())
-   {
-      this->push_back(rc_element);
-      return;
-   }
-   else if (c_position == 0U)
-   {
-      this->push_front(rc_element);
-      return;
-   }
+      if (c_position > this->size()) {
+         this->push_back(rc_element);
+         return;
+      }
+      else if (c_position == 0U) {
+         this->push_front(rc_element);
+         return;
+      }
 
-   Node *current_node = this->mp_head;
-   for (size_t count{0U}; count < (c_position - 1U); ++count)
-   {
-      current_node = current_node->mp_next_node;
-   }
+   Node* current_node = this->mp_head;
+      for (size_t count{0U}; count < (c_position - 1U); ++count) {
+         current_node = current_node->mp_next_node;
+      }
 
-   Node *new_node = new Node(rc_element);
+   Node* new_node = new Node(rc_element);
    new_node->mp_next_node = current_node->mp_next_node;
    new_node->mp_prev_node = current_node;
    current_node->mp_next_node = new_node;
@@ -565,46 +566,40 @@ void List<T>::insert(T const &rc_element, size_t const c_position)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename T>
-void List<T>::insert(T const &rc_element, size_t const c_position, size_t const c_count)
+void List<T>::insert(T const& rc_element, size_t const c_position,
+                     size_t const c_count)
 {
-   if (c_count == 0U)
-   {
-      return;
-   }
-
-   if (c_position > this->size())
-   {
-      for (size_t count{0U}; count < c_count; ++count)
-      {
-         this->push_back(rc_element);
+      if (c_count == 0U) {
+         return;
       }
-      return;
-   }
-   else if (c_position == 0U)
-   {
-      for (size_t count{0U}; count < c_count; ++count)
-      {
-         this->push_front(rc_element);
+
+      if (c_position > this->size()) {
+            for (size_t count{0U}; count < c_count; ++count) {
+               this->push_back(rc_element);
+            }
+         return;
       }
-      return;
-   }
+      else if (c_position == 0U) {
+            for (size_t count{0U}; count < c_count; ++count) {
+               this->push_front(rc_element);
+            }
+         return;
+      }
 
-   Node *current_node = this->mp_head;
-   for (size_t count{0U}; count < (c_position - 1U); ++count)
-   {
-      current_node = current_node->mp_next_node;
-   }
+   Node* current_node = this->mp_head;
+      for (size_t count{0U}; count < (c_position - 1U); ++count) {
+         current_node = current_node->mp_next_node;
+      }
 
-   Node *new_node = new Node(rc_element);
-   Node *temp_head = new_node;
-   Node *temp_tail = new_node;
-   for (size_t count{1U}; count < c_count; ++count)
-   {
-      new_node->mp_next_node = new Node(rc_element);
-      temp_tail = new_node->mp_next_node;
-      temp_tail->mp_prev_node = new_node;
-      new_node = new_node->mp_next_node;
-   }
+   Node* new_node = new Node(rc_element);
+   Node* temp_head = new_node;
+   Node* temp_tail = new_node;
+      for (size_t count{1U}; count < c_count; ++count) {
+         new_node->mp_next_node = new Node(rc_element);
+         temp_tail = new_node->mp_next_node;
+         temp_tail->mp_prev_node = new_node;
+         new_node = new_node->mp_next_node;
+      }
 
    temp_tail->mp_next_node = current_node->mp_next_node;
    temp_head->mp_prev_node = current_node;
@@ -618,122 +613,110 @@ void List<T>::insert(T const &rc_element, size_t const c_position, size_t const 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename T>
-void List<T>::insert(std::initializer_list<T> const &rc_element_list, size_t const c_position)
+void List<T>::insert(std::initializer_list<T> const& rc_element_list,
+                     size_t const c_position)
 {
    auto current_data_pos{c_position};
-   for (auto const &data : rc_element_list)
-   {
-      this->insert(data, current_data_pos);
-      ++current_data_pos;
-   }
-   return;
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-template <typename T>
-void List<T>::remove_head_nodes(T const &rc_element)
-{
-   while ((this->mp_head != nullptr) && (rc_element == this->mp_head->m_node_data))
-   {
-      Node *temp_node = this->mp_head;
-      this->mp_head = this->mp_head->mp_next_node;
-      if (this->mp_head != nullptr)
-      {
-         this->mp_head->mp_prev_node = nullptr;
+      for (auto const& data : rc_element_list) {
+         this->insert(data, current_data_pos);
+         ++current_data_pos;
       }
-      else
-      {
-         this->mp_tail = nullptr;
-      }
-      delete temp_node;
-      --this->m_total_nodes;
-   }
    return;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename T>
-void List<T>::remove_tail_nodes(T const &rc_element)
+void List<T>::remove_head_nodes(T const& rc_element)
 {
-   while ((this->mp_tail != nullptr) && (rc_element == this->mp_tail->m_node_data))
-   {
-      Node *temp_node = this->mp_tail;
-      this->mp_tail = this->mp_tail->mp_prev_node;
-      this->mp_tail->mp_next_node = nullptr;
-      delete temp_node;
-      --this->m_total_nodes;
-   }
+      while ((this->mp_head != nullptr) &&
+             (rc_element == this->mp_head->m_node_data)) {
+         Node* temp_node = this->mp_head;
+         this->mp_head = this->mp_head->mp_next_node;
+            if (this->mp_head != nullptr) {
+               this->mp_head->mp_prev_node = nullptr;
+            }
+            else {
+               this->mp_tail = nullptr;
+            }
+         delete temp_node;
+         --this->m_total_nodes;
+      }
    return;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename T>
-bool List<T>::remove_middle_nodes(T const &rc_element)
+void List<T>::remove_tail_nodes(T const& rc_element)
+{
+      while ((this->mp_tail != nullptr) &&
+             (rc_element == this->mp_tail->m_node_data)) {
+         Node* temp_node = this->mp_tail;
+         this->mp_tail = this->mp_tail->mp_prev_node;
+         this->mp_tail->mp_next_node = nullptr;
+         delete temp_node;
+         --this->m_total_nodes;
+      }
+   return;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+template <typename T>
+bool List<T>::remove_middle_nodes(T const& rc_element)
 {
    bool node_deleted{false};
-   Node *current_node = this->mp_head;
-   while (current_node != nullptr)
-   {
-      if (rc_element == current_node->m_node_data)
-      {
-         Node *prev_node = current_node->mp_prev_node;
-         Node *next_node = current_node->mp_next_node;
-         Node *delete_node = current_node;
-         prev_node->mp_next_node = current_node->mp_next_node;
-         next_node->mp_prev_node = current_node->mp_prev_node;
-         current_node = current_node->mp_next_node;
-         delete delete_node;
+   Node* current_node = this->mp_head;
+      while (current_node != nullptr) {
+            if (rc_element == current_node->m_node_data) {
+               Node* prev_node = current_node->mp_prev_node;
+               Node* next_node = current_node->mp_next_node;
+               Node* delete_node = current_node;
+               prev_node->mp_next_node = current_node->mp_next_node;
+               next_node->mp_prev_node = current_node->mp_prev_node;
+               current_node = current_node->mp_next_node;
+               delete delete_node;
 
-         --this->m_total_nodes;
-         node_deleted = true;
+               --this->m_total_nodes;
+               node_deleted = true;
+            }
+            else {
+               current_node = current_node->mp_next_node;
+            }
       }
-      else
-      {
-         current_node = current_node->mp_next_node;
-      }
-   }
    return node_deleted;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename T>
-bool List<T>::remove(T const &rc_element)
+bool List<T>::remove(T const& rc_element)
 {
    bool node_removed{false};
-   if (this->is_empty())
-   {
-      return false;
-   }
-   if (this->size() == 1U)
-   {
-      if (rc_element == this->mp_head->m_node_data)
-      {
-         this->clear();
-         node_removed = true;
+      if (this->is_empty()) {
+         return false;
       }
-      else
-      {
-         // NTD.
+      if (this->size() == 1U) {
+            if (rc_element == this->mp_head->m_node_data) {
+               this->clear();
+               node_removed = true;
+            }
+            else {
+               // NTD.
+            }
       }
-   }
-   else
-   {
-      // Handle head node deletion.
-      if (rc_element == this->mp_head->m_node_data)
-      {
-         remove_head_nodes(rc_element);
-         node_removed = true;
-      }
-      // Handle tail node deletion.
-      if (rc_element == this->mp_tail->m_node_data)
-      {
-         remove_tail_nodes(rc_element);
-         node_removed = true;
-      }
+      else {
+            // Handle head node deletion.
+            if (rc_element == this->mp_head->m_node_data) {
+               remove_head_nodes(rc_element);
+               node_removed = true;
+            }
+            // Handle tail node deletion.
+            if (rc_element == this->mp_tail->m_node_data) {
+               remove_tail_nodes(rc_element);
+               node_removed = true;
+            }
 
-      // Handle middle node deletion.
-      node_removed |= remove_middle_nodes(rc_element);
-   }
+         // Handle middle node deletion.
+         node_removed |= remove_middle_nodes(rc_element);
+      }
    return node_removed;
 }
 
@@ -741,17 +724,15 @@ bool List<T>::remove(T const &rc_element)
 template <typename T>
 void List<T>::copy_list(List<T> const& rc_list)
 {
-   if (!this->is_empty())
-   {
-      this->clear();
-   }
+      if (!this->is_empty()) {
+         this->clear();
+      }
 
    Node* current_node = rc_list.mp_head;
-   while (current_node != nullptr)
-   {
-      this->push_back(current_node->m_node_data);
-      current_node = current_node->mp_next_node;
-   }
+      while (current_node != nullptr) {
+         this->push_back(current_node->m_node_data);
+         current_node = current_node->mp_next_node;
+      }
 
    return;
 }
@@ -760,38 +741,36 @@ void List<T>::copy_list(List<T> const& rc_list)
 template <typename T>
 typename List<T>::Iterator List<T>::begin()
 {
-   if (this->is_empty())
-   {
-      return List<T>::Iterator{};
-   }
+      if (this->is_empty()) {
+         return List<T>::Iterator{};
+      }
 
-   return List<T>::Iterator{ this->mp_head };
+   return List<T>::Iterator{this->mp_head};
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename T>
 typename List<T>::Iterator List<T>::begin() const
 {
-   if (this->is_empty())
-   {
-      return List<T>::Iterator{};
-   }
+      if (this->is_empty()) {
+         return List<T>::Iterator{};
+      }
 
-   return List<T>::Iterator{ this->mp_head };
+   return List<T>::Iterator{this->mp_head};
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename T>
 typename List<T>::Iterator List<T>::end()
 {
-   return List<T>::Iterator{ nullptr };
+   return List<T>::Iterator{nullptr};
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename T>
 typename List<T>::Iterator List<T>::end() const
 {
-   return List<T>::Iterator{ nullptr };
+   return List<T>::Iterator{nullptr};
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -801,7 +780,7 @@ typename List<T>::Iterator List<T>::end() const
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename T>
 List<T>::Iterator::Iterator(List<T>::Node* cpc_starting_node)
-   : mp_current_node{ cpc_starting_node }
+   : mp_current_node{cpc_starting_node}
 {
    // Intentionally left empty.
 }
@@ -824,10 +803,9 @@ T const& List<T>::Iterator::operator*() const
 template <typename T>
 typename List<T>::Iterator& List<T>::Iterator::operator++()
 {
-   if (nullptr != this->mp_current_node)
-   {
-      this->mp_current_node = this->mp_current_node->mp_next_node;
-   }
+      if (nullptr != this->mp_current_node) {
+         this->mp_current_node = this->mp_current_node->mp_next_node;
+      }
 
    return *this;
 }
@@ -836,7 +814,7 @@ typename List<T>::Iterator& List<T>::Iterator::operator++()
 template <typename T>
 typename List<T>::Iterator List<T>::Iterator::operator++(int)
 {
-   List<T>::Iterator temp{ *this };
+   List<T>::Iterator temp{*this};
    operator++();
 
    return temp;
@@ -856,7 +834,7 @@ bool List<T>::Iterator::operator!=(Iterator const& rhs) const
    return !(*this == rhs);
 }
 
-} // namespace MilkyWay
-} // namespace Prashant
+}  // namespace MilkyWay
+}  // namespace Prashant
 
-#endif // PRASHANT_MILKY_WAY_LIST_LIST_H
+#endif  // PRASHANT_MILKY_WAY_LIST_LIST_H
