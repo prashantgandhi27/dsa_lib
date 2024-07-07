@@ -60,4 +60,5 @@ target_include_directories(stack_tests
 target_link_libraries(stack_tests
    PRIVATE
       gtest_main
+      gmock_main
 )

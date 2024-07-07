@@ -14,11 +14,19 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
+if (MSVC)
+   add_compile_options(
+         /W4
+         /WX
+   )
+endif(MSVC)
+
 enable_testing()
 
 set(HEADERS
    ${CMAKE_CURRENT_SOURCE_DIR}/include/milky_way/list/list.h
    ${CMAKE_CURRENT_SOURCE_DIR}/include/milky_way/milky_way_public.h
+   ${CMAKE_CURRENT_SOURCE_DIR}/include/milky_way/stack/stack.h
 )
 
 set(SOURCES

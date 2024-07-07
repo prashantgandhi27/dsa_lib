@@ -50,16 +50,15 @@ protected:
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-TEST_F(
-   ListIteratorTest,
-   Given_AListIterator_When_BeginIsCalled_Then_IteratorPointingToFirstElementIsReturned)
+TEST_F(ListIteratorTest,
+       Given_AListIterator_When_BeginIsCalled_Then_IteratorPointingToFirstElementIsReturned)
 {
    // Given - A List iterator,
    std::string const first_element = "TEST";
-   List<std::string> test_list{ first_element, "LIST" };
+   List<std::string> string_list{ first_element, "LIST" };
 
    // When - Begin() is called,
-   auto const it = test_list.begin();
+   auto const it = string_list.begin();
 
    // Then - An iterator pointing to first element in list is returned.
    EXPECT_EQ(*it, first_element);
@@ -83,16 +82,13 @@ TEST_F(
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-TEST_F(
-   ListIteratorTest,
-   Given_AListIterator_When_PostIncrementIsCalled_Then_CorrectResultsAreReturned)
+TEST_F(ListIteratorTest,
+       Given_AListIterator_When_PostIncrementIsCalled_Then_CorrectResultsAreReturned)
 {
    // Given - A List iterator,
-   auto it = test_list.begin();
-   size_t idx{ 0U };
-
    // When - Post-increment is called,
    // Then - Correct results are returned.
+   size_t idx{ 0U };
    for (auto it = test_list.begin(); it != test_list.end(); it++)
    {
       EXPECT_EQ(*it, list_elemets[idx]);
@@ -101,9 +97,7 @@ TEST_F(
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-TEST_F(
-   ListIteratorTest,
-   Given_AListIterator_When_RangBasedForLoopIsCalled_Then_LoopWorksAsExpected)
+TEST_F(ListIteratorTest, Given_AListIterator_When_RangBasedForLoopIsCalled_Then_LoopWorksAsExpected)
 {
    // Given - A List iterator,
    auto it = test_list.begin();
@@ -119,9 +113,8 @@ TEST_F(
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-TEST_F(
-   ListIteratorTest,
-   Given_AListIterator_When_IteratorIsUsedToModifyListContent_Then_ListIsUpdated)
+TEST_F(ListIteratorTest,
+       Given_AListIterator_When_IteratorIsUsedToModifyListContent_Then_ListIsUpdated)
 {
    // Given - A List iterator,
    auto it = test_list.begin();

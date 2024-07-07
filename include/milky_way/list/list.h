@@ -138,8 +138,7 @@ public:
    /// provided list of elements
    ///       are inserted at the end.
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   void insert(std::initializer_list<T> const& rc_element_list,
-               size_t const c_pos);
+   void insert(std::initializer_list<T> const& rc_element_list, size_t const c_pos);
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
    /// @brief Remove the provided element from the list.
@@ -181,26 +180,24 @@ public:
    /////////////////////////////////////////////////////////////////////////////////////////////////
    /// @brief Gets the first element in the list.
    ///
-   /// @return Reference to the first element if list is non-empty, otherwise
-   /// undefined behaviour.
+   /// @return Reference to the first element if list is non-empty, otherwise undefined behaviour.
    /////////////////////////////////////////////////////////////////////////////////////////////////
    T const& front() const;
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   /// @overload T const &front() const
+   /// @see T const& front() const;
    /////////////////////////////////////////////////////////////////////////////////////////////////
    T& front();
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
    /// @brief Gets the last element in the list.
    ///
-   /// @return Reference to the last element if list is non-empty, otherwise
-   /// undefined behaviour.
+   /// @return Reference to the last element if list is non-empty, otherwise undefined behaviour.
    /////////////////////////////////////////////////////////////////////////////////////////////////
    T const& back() const;
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   /// @overload T const &back() const
+   /// @see T const &back() const
    /////////////////////////////////////////////////////////////////////////////////////////////////
    T& back();
 
@@ -221,12 +218,12 @@ public:
       explicit Iterator(List<T>::Node*);
 
       //////////////////////////////////////////////////////////////////////////////////////////////
-      /// @brief Deference operator overloading.
+      /// @brief Deference operator overload.
       //////////////////////////////////////////////////////////////////////////////////////////////
       T& operator*();
 
       //////////////////////////////////////////////////////////////////////////////////////////////
-      /// @overload T& operator*()
+      /// @brief Deference operator overload.
       //////////////////////////////////////////////////////////////////////////////////////////////
       T const& operator*() const;
 
@@ -250,14 +247,6 @@ public:
       //////////////////////////////////////////////////////////////////////////////////////////////
       bool operator!=(Iterator const&) const;
 
-      //////////////////////////////////////////////////////////////////////////////////////////////
-      /// @brief Defaulted special member fuctions.
-      //////////////////////////////////////////////////////////////////////////////////////////////
-      Iterator(Iterator const&)                = default;
-      Iterator& operator=(Iterator const&)     = default;
-      Iterator(Iterator&&) noexcept            = default;
-      Iterator& operator=(Iterator&&) noexcept = default;
-
    private:
       List<T>::Node* mp_current_node{ nullptr };
    };
@@ -265,29 +254,33 @@ public:
    /////////////////////////////////////////////////////////////////////////////////////////////////
    /// @brief Gets an iterator pointing to a first element of the List.
    ///
-   /// @return Iterator pointing to first element of List if it is non-empty,
-   /// otherwise undefined
+   /// @return Iterator pointing to first element of List if it is non-empty, otherwise undefined
    ///         behaviour.
    /////////////////////////////////////////////////////////////////////////////////////////////////
    List<T>::Iterator begin();
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   /// @overload List<T>::Iterator begin()
+   /// @brief Gets an iterator pointing to a first element of the List.
+   ///
+   /// @return Iterator pointing to first element of List if it is non-empty, otherwise undefined
+   ///         behaviour.
    /////////////////////////////////////////////////////////////////////////////////////////////////
    List<T>::Iterator begin() const;
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   /// @brief Gets an iterator pointing to one past the last element of the
-   /// List.
+   /// @brief Gets an iterator pointing to one past the last element of the List.
    ///
-   /// @return Iterator pointing to one past the last element of List if it
-   /// is non-empty, otherwise
+   /// @return Iterator pointing to one past the last element of List if it is non-empty, otherwise
    ///         undefined behaviour.
    /////////////////////////////////////////////////////////////////////////////////////////////////
    List<T>::Iterator end();
 
    /////////////////////////////////////////////////////////////////////////////////////////////////
-   /// @overload List<T>::Iterator end()
+   /// @brief Gets an iterator pointing to one past the last element of the List.
+   ///
+   /// @return Iterator pointing to one past the last element of List if it is non-empty,
+   /// otherwise
+   ///         undefined behaviour.
    /////////////////////////////////////////////////////////////////////////////////////////////////
    List<T>::Iterator end() const;
 
@@ -585,8 +578,7 @@ void List<T>::insert(T const& rc_element, size_t const c_position)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename T>
-void List<T>::insert(T const& rc_element, size_t const c_position,
-                     size_t const c_count)
+void List<T>::insert(T const& rc_element, size_t const c_position, size_t const c_count)
 {
    if (c_count == 0U)
    {
@@ -639,8 +631,7 @@ void List<T>::insert(T const& rc_element, size_t const c_position,
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <typename T>
-void List<T>::insert(std::initializer_list<T> const& rc_element_list,
-                     size_t const c_position)
+void List<T>::insert(std::initializer_list<T> const& rc_element_list, size_t const c_position)
 {
    auto current_data_pos{ c_position };
    for (auto const& data : rc_element_list)
@@ -655,8 +646,7 @@ void List<T>::insert(std::initializer_list<T> const& rc_element_list,
 template <typename T>
 void List<T>::remove_head_nodes(T const& rc_element)
 {
-   while ((this->mp_head != nullptr) &&
-          (rc_element == this->mp_head->m_node_data))
+   while ((this->mp_head != nullptr) && (rc_element == this->mp_head->m_node_data))
    {
       Node* temp_node = this->mp_head;
       this->mp_head   = this->mp_head->mp_next_node;
@@ -678,8 +668,7 @@ void List<T>::remove_head_nodes(T const& rc_element)
 template <typename T>
 void List<T>::remove_tail_nodes(T const& rc_element)
 {
-   while ((this->mp_tail != nullptr) &&
-          (rc_element == this->mp_tail->m_node_data))
+   while ((this->mp_tail != nullptr) && (rc_element == this->mp_tail->m_node_data))
    {
       Node* temp_node             = this->mp_tail;
       this->mp_tail               = this->mp_tail->mp_prev_node;
