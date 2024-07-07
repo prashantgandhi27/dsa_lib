@@ -18,25 +18,46 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(listtests
-   ${CMAKE_CURRENT_SOURCE_DIR}/unit/list/list_iterator_tests.cpp
-   ${CMAKE_CURRENT_SOURCE_DIR}/unit/list/list_tests.cpp
+include(google_test_helper)
+
+####################################################################################################
+#  List test(s)
+####################################################################################################
+add_lib_tests(list_tests
+   SRCS
+      ${CMAKE_CURRENT_SOURCE_DIR}/unit/list/list_iterator_tests.cpp
+      ${CMAKE_CURRENT_SOURCE_DIR}/unit/list/list_tests.cpp
 )
 
-target_include_directories(listtests
+target_include_directories(list_tests
    PUBLIC
       ${CMAKE_CURRENT_SOURCE_DIR}/../include
    PRIVATE
       ${CMAKE_CURRENT_SOURCE_DIR}/../src
 )
 
-target_link_libraries(listtests
+target_link_libraries(list_tests
    PRIVATE
       gtest_main
       gmock_main
 )
 
-add_test(
-   NAME listtests
-   COMMAND listtests
+####################################################################################################
+#  Stack test(s)
+####################################################################################################
+add_lib_tests(stack_tests
+   SRCS
+      ${CMAKE_CURRENT_SOURCE_DIR}/unit/stack/stack_tests.cpp
+)
+
+target_include_directories(stack_tests
+   PUBLIC
+      ${CMAKE_CURRENT_SOURCE_DIR}/../include
+   PRIVATE
+      ${CMAKE_CURRENT_SOURCE_DIR}/../src
+)
+
+target_link_libraries(stack_tests
+   PRIVATE
+      gtest_main
 )
