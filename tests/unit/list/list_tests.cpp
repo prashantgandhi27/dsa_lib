@@ -41,8 +41,7 @@ class ListTest : public testing::Test
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-TEST_F(ListTest,
-       Given_AListObjWithNoElement_When_IsEmptyIsCalled_Then_TrueIsReturned)
+TEST_F(ListTest, Given_AListObjWithNoElement_When_IsEmptyIsCalled_Then_TrueIsReturned)
 {
    // Given - A List object with no element,
    List<uint32_t> test_list{};
@@ -53,8 +52,7 @@ TEST_F(ListTest,
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-TEST_F(ListTest,
-       Given_AListObjWithElements_When_IsEmptyIsCalled_Then_FalseIsReturned)
+TEST_F(ListTest, Given_AListObjWithElements_When_IsEmptyIsCalled_Then_FalseIsReturned)
 {
    // Given - A List object with no element,
    List<uint32_t> test_list{ 1U, 2U, 3U };
@@ -65,8 +63,7 @@ TEST_F(ListTest,
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-TEST_F(ListTest,
-       Given_AListObjWithNoElement_When_SizeIsCalled_Then_ZeroIsReturned)
+TEST_F(ListTest, Given_AListObjWithNoElement_When_SizeIsCalled_Then_ZeroIsReturned)
 {
    // Given - A List object with no element,
    List<std::string> test_list{};
@@ -77,12 +74,10 @@ TEST_F(ListTest,
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-TEST_F(ListTest,
-       Given_AListObjWithElements_When_SizeIsCalled_Then_ExpectedSizeIsReturned)
+TEST_F(ListTest, Given_AListObjWithElements_When_SizeIsCalled_Then_ExpectedSizeIsReturned)
 {
    // Given - A List object with no element,
-   List<std::string> test_list{ std::string("First"), std::string("Sec"),
-                                std::string("Third") };
+   List<std::string> test_list{ std::string("First"), std::string("Sec"), std::string("Third") };
 
    // When - size() is called,
    // Then - Expected size is returned
@@ -90,9 +85,7 @@ TEST_F(ListTest,
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-TEST_F(
-   ListTest,
-   Given_AListObj_When_AnElementIsPushedAtBack_Then_AnElementIsAddedAtCorrectLocation)
+TEST_F(ListTest, Given_AListObj_When_AnElementIsPushedAtBack_Then_AnElementIsAddedAtCorrectLocation)
 {
    // Given - A List,
    List<int32_t> test_list{ 78, 98, 547 };
@@ -100,7 +93,6 @@ TEST_F(
    // When - An element is pushed at back,
    int const new_element{ 70 };
    test_list.push_back(new_element);
-   auto const back_element = test_list.back();
 
    // Then - An Element is added at correct location.
    EXPECT_FALSE(test_list.is_empty());
@@ -109,9 +101,8 @@ TEST_F(
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-TEST_F(
-   ListTest,
-   Given_AListObj_When_AnElementIsPushedAtBeginning_Then_AnElementIsAddedAtCorrectLocation)
+TEST_F(ListTest,
+       Given_AListObj_When_AnElementIsPushedAtBeginning_Then_AnElementIsAddedAtCorrectLocation)
 {
    // Given - A List,
    List<int32_t> test_list{ 78, 98, 547 };
@@ -119,7 +110,6 @@ TEST_F(
    // When - An element is pushed at the beginning,
    int const new_element{ 70 };
    test_list.push_front(new_element);
-   auto const back_element = test_list.back();
 
    // Then - An Element is added at correct location.
    EXPECT_FALSE(test_list.is_empty());
@@ -128,8 +118,7 @@ TEST_F(
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-TEST_F(ListTest,
-       Given_ANonEmptyList_When_ExistingElementIsSearched_Then_TrueIsReturned)
+TEST_F(ListTest, Given_ANonEmptyList_When_ExistingElementIsSearched_Then_TrueIsReturned)
 {
    // Given - A non-empty List,
    List<int32_t> test_list{ 78, 98, 547 };
@@ -140,9 +129,7 @@ TEST_F(ListTest,
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-TEST_F(
-   ListTest,
-   Given_ANonEmptyList_When_NonExistingElementIsSearched_Then_TrueIsReturned)
+TEST_F(ListTest, Given_ANonEmptyList_When_NonExistingElementIsSearched_Then_TrueIsReturned)
 {
    // Given - A non-empty List,
    List<int32_t> test_list{ 78, 98, 547 };
@@ -153,8 +140,7 @@ TEST_F(
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-TEST_F(ListTest,
-       Given_ANonEmptyList_When_ClearIsCalled_Then_AllElementsShouldBeRemoved)
+TEST_F(ListTest, Given_ANonEmptyList_When_ClearIsCalled_Then_AllElementsShouldBeRemoved)
 {
    // Given - A non-empty List,
    List<int32_t> test_list{ 78, 98, 547 };
@@ -168,9 +154,8 @@ TEST_F(ListTest,
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-TEST_F(
-   ListTest,
-   Given_ANonEmptyList_When_ExistingElementIsRemoved_Then_ElementShouldNotBePresentInList)
+TEST_F(ListTest,
+       Given_ANonEmptyList_When_ExistingElementIsRemoved_Then_ElementShouldNotBePresentInList)
 {
    // Given - A non-empty List,
    List<int32_t> test_list{ 78, 98, 547 };
@@ -286,9 +271,7 @@ TEST_F(
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-TEST_F(
-   ListTest,
-   Given_ANonEmptyList_When_CopyCtorIsUsedToCopyList_Then_CopiedListContainsSameData)
+TEST_F(ListTest, Given_ANonEmptyList_When_CopyCtorIsUsedToCopyList_Then_CopiedListContainsSameData)
 {
    // Given - A non-empty string,
    List<uint8_t> const test_list{ 4U, 7U, 9U, 78U };
@@ -299,18 +282,14 @@ TEST_F(
    // Then - Copied list contains same elements.
    EXPECT_TRUE(copy_list == test_list);
    EXPECT_FALSE(copy_list.is_empty());
-   EXPECT_THAT((copy_list.size() == test_list.size()),
-               "Size is not equal; Copy failed");
-   EXPECT_THAT((copy_list.front() == test_list.front()),
-               "Front is not equal; Copy failed");
-   EXPECT_THAT((copy_list.back() == test_list.back()),
-               "Back is not equal; Copy failed");
+   EXPECT_THAT((copy_list.size() == test_list.size()), "Size is not equal; Copy failed");
+   EXPECT_THAT((copy_list.front() == test_list.front()), "Front is not equal; Copy failed");
+   EXPECT_THAT((copy_list.back() == test_list.back()), "Back is not equal; Copy failed");
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-TEST_F(
-   ListTest,
-   Given_ANonEmptyList_When_CopyAssignmentIsUsedToCopyList_Then_CopiedListContainsSameData)
+TEST_F(ListTest,
+       Given_ANonEmptyList_When_CopyAssignmentIsUsedToCopyList_Then_CopiedListContainsSameData)
 {
    // Given - A non-empty string,
    List<uint8_t> const test_list{ 4U, 7U, 9U, 78U };
@@ -322,12 +301,9 @@ TEST_F(
    // Then - Copied list contains same elements.
    EXPECT_TRUE(copy_list == test_list);
    EXPECT_FALSE(copy_list.is_empty());
-   EXPECT_THAT((copy_list.size() == test_list.size()),
-               "Size is not equal; Copy failed");
-   EXPECT_THAT((copy_list.front() == test_list.front()),
-               "Front is not equal; Copy failed");
-   EXPECT_THAT((copy_list.back() == test_list.back()),
-               "Back is not equal; Copy failed");
+   EXPECT_THAT((copy_list.size() == test_list.size()), "Size is not equal; Copy failed");
+   EXPECT_THAT((copy_list.front() == test_list.front()), "Front is not equal; Copy failed");
+   EXPECT_THAT((copy_list.back() == test_list.back()), "Back is not equal; Copy failed");
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -335,9 +311,7 @@ TEST_F(
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-TEST_F(
-   ListTest,
-   Given_ANonEmptyList_When_MoveCtorIsUsedToMoveList_Then_OriginalListIsMoved)
+TEST_F(ListTest, Given_ANonEmptyList_When_MoveCtorIsUsedToMoveList_Then_OriginalListIsMoved)
 {
    // Given - A non-empty string,
    List<uint8_t> test_list{ 4U, 7U, 9U, 78U };
@@ -351,16 +325,12 @@ TEST_F(
    // Then - Original list is moved.
    EXPECT_TRUE(test_list.is_empty());
    EXPECT_THAT((move_list.size() == original_list_size), "Size mismatch");
-   EXPECT_THAT((move_list.front() == original_list_front),
-               "Front element mismatch");
-   EXPECT_THAT((move_list.back() == original_list_back),
-               "Back element mismatch");
+   EXPECT_THAT((move_list.front() == original_list_front), "Front element mismatch");
+   EXPECT_THAT((move_list.back() == original_list_back), "Back element mismatch");
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-TEST_F(
-   ListTest,
-   Given_ANonEmptyList_When_MoveAssignmentIsUsedToMoveList_Then_OriginalListIsMoved)
+TEST_F(ListTest, Given_ANonEmptyList_When_MoveAssignmentIsUsedToMoveList_Then_OriginalListIsMoved)
 {
    // Given - A non-empty string,
    List<uint8_t> test_list{ 4U, 7U, 9U, 78U };
@@ -375,10 +345,8 @@ TEST_F(
    // Then - Original list is moved.
    EXPECT_TRUE(test_list.is_empty());
    EXPECT_THAT((move_list.size() == original_list_size), "Size mismatch");
-   EXPECT_THAT((move_list.front() == original_list_front),
-               "Front element mismatch");
-   EXPECT_THAT((move_list.back() == original_list_back),
-               "Back element mismatch");
+   EXPECT_THAT((move_list.front() == original_list_front), "Front element mismatch");
+   EXPECT_THAT((move_list.back() == original_list_back), "Back element mismatch");
 }
 
 }  // namespace MilkyWay
